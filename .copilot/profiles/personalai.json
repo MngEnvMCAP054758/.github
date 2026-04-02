@@ -1,0 +1,19 @@
+{
+  "name": "PersonalAI",
+  "cwd": "C:\\Users\\v-amera\\AppData\\Local\\Temp\\personalai-deploy",
+  "description": "PersonalAI Agent full-stack development",
+  "agents": ["personalai-dev", "ppt-quality", "overnight-worker"],
+  "mcp": ["azure-mcp", "playwright"],
+  "quickCommands": {
+    "deploy": "cd C:\\Users\\v-amera\\AppData\\Local\\Temp\\personalai-deploy && .\\deploy.ps1",
+    "health": "curl -s https://personalai-agent.azurewebsites.net/health",
+    "logs": "az webapp log tail --name personalai-agent --resource-group rg-ai-app",
+    "test-chat": "curl -s -X POST https://personalai-agent.azurewebsites.net/api/chat -H 'Content-Type: application/json' -d '{\"message\":\"test\"}'"
+  },
+  "keyFiles": [
+    "COPILOT_CONTEXT.md",
+    "PROJECT_DOCUMENTATION.md",
+    "main.py",
+    "deploy.ps1"
+  ]
+}

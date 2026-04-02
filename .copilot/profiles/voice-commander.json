@@ -1,0 +1,18 @@
+{
+  "name": "Voice Commander",
+  "cwd": "C:\\Users\\v-amera\\voice-commander",
+  "description": "Voice control layer for Copilot CLI — speak commands, get spoken responses, manage multiple sessions",
+  "agents": ["overnight-worker"],
+  "quickCommands": {
+    "start": "python voice_commander.py --always-on --region swedencentral --key $env:SPEECH_KEY",
+    "start-quiet": "python voice_commander.py --always-on --quiet --region swedencentral --key $env:SPEECH_KEY"
+  },
+  "prerequisites": [
+    "Azure Speech resource (SPEECH_KEY + SPEECH_REGION)",
+    "pip install azure-cognitiveservices-speech pyaudio"
+  ],
+  "keyFiles": [
+    "voice_commander.py",
+    "README.md"
+  ]
+}

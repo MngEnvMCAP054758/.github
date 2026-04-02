@@ -1,0 +1,17 @@
+{
+  "name": "Trading Intel",
+  "cwd": "C:\\Users\\v-amera\\trading-intel",
+  "description": "OlympTrade trading intelligence and automation",
+  "agents": ["trading-bot", "overnight-worker"],
+  "mcp": ["azure-mcp"],
+  "quickCommands": {
+    "status": "curl -s http://localhost:8080/status",
+    "run-analysis": "python run_analysis.py",
+    "check-positions": "python check_positions.py"
+  },
+  "keyFiles": [
+    "config.json",
+    "strategies/"
+  ],
+  "notes": "Demo account only. Go aggressive with strategies. Latency matters."
+}

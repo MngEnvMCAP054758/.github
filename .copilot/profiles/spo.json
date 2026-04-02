@@ -1,0 +1,24 @@
+{
+  "name": "SPO Assessment",
+  "cwd": "C:\\Users\\v-amera\\Downloads\\SPO_Assessment",
+  "description": "SharePoint Online Storage Assessment VBD",
+  "agents": ["csa-engineer", "azure-fleet"],
+  "mcp": ["azure-mcp"],
+  "vm": {
+    "name": "vm-spo-assess",
+    "resourceGroup": "rg-spo-assessment",
+    "ip": "20.91.186.25",
+    "user": "azadmin"
+  },
+  "quickCommands": {
+    "vm-status": "az vm get-instance-view --name vm-spo-assess --resource-group rg-spo-assessment --query \"instanceView.statuses[1].displayStatus\" -o tsv",
+    "vm-start": "az vm start --name vm-spo-assess --resource-group rg-spo-assessment",
+    "vm-stop": "az vm deallocate --name vm-spo-assess --resource-group rg-spo-assessment"
+  },
+  "contact": "Joseph Vasil",
+  "keyFiles": [
+    "Scripts/",
+    "Export/",
+    "Documentation/SPO_Assessment_Consolidated_Documentation.txt"
+  ]
+}

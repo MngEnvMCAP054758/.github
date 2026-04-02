@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "azure-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@azure/mcp@latest", "server", "start"],
+      "env": {},
+      "tools": ["*"]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-playwright"],
+      "env": {},
+      "tools": ["*"]
+    },
+    "github": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      },
+      "tools": ["*"]
+    },
+    "msgraph": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@nicjac/msgraph-mcp-server"],
+      "env": {
+        "TENANT_ID": "edc7f3e7-cf7a-4299-af3e-18a3cd43e356",
+        "CLIENT_ID": "",
+        "CLIENT_SECRET": ""
+      },
+      "tools": ["*"]
+    }
+  }
+}
