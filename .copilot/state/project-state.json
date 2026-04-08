@@ -1,0 +1,85 @@
+﻿{
+    "_schema":  "project-state-v1",
+    "_description":  "Machine-readable verified state. NEVER edit manually â€” updated by verify-state.ps1",
+    "_last_verified":  "2026-04-08T17:54:14Z",
+    "projects":  {
+                     "personalai":  {
+                                        "status":  "pending_rebuild",
+                                        "source_path":  null,
+                                        "git_repo":  null,
+                                        "git_branch":  null,
+                                        "git_hash":  null,
+                                        "deployed_url":  "https://personalai-agent.azurewebsites.net",
+                                        "deployed_healthy":  false,
+                                        "last_deploy":  "2026-04-03T00:41:15Z",
+                                        "last_health_check":  "2026-04-08T17:54:14Z",
+                                        "azure_rg":  "rg-ai-app",
+                                        "modules":  {
+                                                        "chat":  {
+                                                                     "status":  "unknown",
+                                                                     "last_tested":  null
+                                                                 },
+                                                        "voice":  {
+                                                                      "status":  "unknown",
+                                                                      "last_tested":  null
+                                                                  },
+                                                        "ppt":  {
+                                                                    "status":  "needs_rebuild",
+                                                                    "last_tested":  null,
+                                                                    "notes":  "182KB monster file, 69 functions, accumulated tech debt across 3+ versions"
+                                                                },
+                                                        "dashboard":  {
+                                                                          "status":  "unknown",
+                                                                          "last_tested":  null
+                                                                      }
+                                                    },
+                                        "notes":  "Source directory was in %TEMP% and got deleted. Only backup exists at personalai-deploy-BACKUP-20260325-033924. Clean rebuild planned."
+                                    },
+                     "spo_assessment":  {
+                                            "status":  "unknown",
+                                            "source_path":  "C:\\Users\\v-amera\\Downloads\\SPO_Assessment",
+                                            "vm_name":  "vm-spo-assess",
+                                            "vm_ip":  "20.91.186.25",
+                                            "azure_rg":  "rg-spo-assessment",
+                                            "last_verified":  null
+                                        },
+                     "trading":  {
+                                     "status":  "unknown",
+                                     "source_path":  "C:\\Users\\v-amera\\trading-intel",
+                                     "should_be_running_24_7":  true,
+                                     "last_verified":  "2026-04-08T17:54:14Z"
+                                 }
+                 },
+    "azure":  {
+                  "subscription":  "ME-MngEnvMCAP054758-v-amera-1",
+                  "tenant":  "edc7f3e7-cf7a-4299-af3e-18a3cd43e356",
+                  "test_tenant":  "MngEnvMCAP054758.onmicrosoft.com",
+                  "monthly_budget_usd":  2500,
+                  "resource_groups":  [
+
+                                      ],
+                  "vms":  [
+
+                          ],
+                  "webapps":  [
+
+                              ],
+                  "storage_accounts":  [
+
+                                       ],
+                  "last_cost_check":  null,
+                  "last_resource_scan":  null
+              },
+    "cleanup_plan":  {
+                         "created":  "2026-04-08",
+                         "reason":  "Accumulated tech debt, lost source files, unreliable memory across sessions",
+                         "strategy":  "Nuke and rebuild with git-first, verified state, vector-first PPT",
+                         "items_to_delete":  [
+
+                                             ],
+                         "items_to_keep":  [
+
+                                           ],
+                         "completed":  false
+                     }
+}

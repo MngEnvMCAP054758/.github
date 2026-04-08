@@ -104,43 +104,55 @@ Ahmed should NEVER have to teach the same thing twice. If he rejects a blue head
 
 ---
 
-## Project Context
-(Loaded in EVERY session — Ahmed doesn't want to re-explain these)
+## VERIFICATION-FIRST PROTOCOL (Added 2026-04-08)
+### THE #1 RULE: Never trust text. Verify everything.
 
-### PersonalAI Agent (Main Project)
-- Location: C:\Users\v-amera\AppData\Local\Temp\personalai-deploy
+**At session start, BEFORE doing anything:**
+1. Read `~/.copilot/state/project-state.json` — this is the machine-readable truth
+2. Run `~/.copilot/state/verify-state.ps1 -Quick` to check paths + health
+3. If ANYTHING is different from what project-state.json claims, update it and tell Ahmed
+4. NEVER say "X is done" or "X exists" without checking. `Test-Path`, `curl`, `git status` — verify.
+
+**During work:**
+- After creating/modifying files: verify they exist and have expected content
+- After deploying: health check + test 2 endpoints. "Deployed" means nothing without verification.
+- After any multi-step operation: verify the end state, not just individual steps
+- If you're about to say "I already did X in a previous session" — STOP. Check if it actually exists.
+
+**At session end:**
+- Update `~/.copilot/state/project-state.json` with verified current state
+- Run `self-evolve` skill to capture lessons
+
+**Why this exists:** Too many sessions claimed things were done that weren't. Code was lost because it was in %TEMP%. Features were "added" but never tested. This protocol ensures verified truth, not optimistic prose.
+
+### Project Source Rule
+- ALL projects live in `C:\Users\v-amera\projects\` (permanent, not %TEMP%)
+- ALL projects must be git repos with remotes (if no remote = not backed up = doesn't exist)
+- The backup at `personalai-deploy-BACKUP-20260325-033924` is reference only — not the active source
+
+---
+
+## Project Context
+(Read project-state.json for VERIFIED status. Below is reference only.)
+
+### PersonalAI Agent (Main Project) — STATUS: REBUILDING
+- Old location was in %TEMP% and got deleted. Clean rebuild in progress.
+- New location: C:\Users\v-amera\projects\personalai (when rebuilt)
 - Deployed: personalai-agent.azurewebsites.net (B3, Sweden Central)
 - Stack: FastAPI + Python 3.12 + Azure OpenAI (gpt-4o) + Azure AI Vision
-- Modes: Chat, Voice (WebSocket/Realtime API), PPT/Docs, Dashboard
-- Key files: main.py (43 endpoints), COPILOT_CONTEXT.md, PROJECT_DOCUMENTATION.md
-- Deploy: deploy.ps1 → ALWAYS test /health after deploy
-- Known pain: PPT quality — rendering is inconsistent, design output often mediocre
-- Training data: 266+ PPTs from Microsoft VBD content in knowledge_extract/
-- Knowledge DB: knowledge.db (SQLite, consider PostgreSQL for scale)
-- Modules: agent/, tools/, language_module/, trading_module/, mastr_video/
+- PPT module: needs full rebuild with vector-first approach (old one was 3400-line monster)
+- Backup exists at: C:\Users\v-amera\personalai-deploy-BACKUP-20260325-033924
 
 ### SPO Assessment VBD
 - Location: C:\Users\v-amera\Downloads\SPO_Assessment
 - VM: vm-spo-assess (20.91.186.25, azadmin, rg-spo-assessment)
 - 7 PowerShell scripts (0-5 + Prerequisites) → 9 CSVs → Power BI report
-- Data flow: sites.csv → scripts → CSVs → SPO_StorageAnalysis.pbix
 - Contact: Joseph Vasil
-- Bug fixes applied: continue→return in Functions.ps1, variable ordering in MembershipOrchestrator, API path in Videos.ps1
 
 ### Trading Intel
-- Location: C:\Users\v-amera\trading-intel
-- OlympTrade integration on dedicated Azure VM
-- News analysis, pattern detection, strategy synthesis
-- Demo account — go aggressive, no real money at risk
-
-### Language Module (inside PersonalAI)
-- Curriculum planner, practice engine, voice practice
-- Speech/writing assessment
-- Multi-language support (started with German)
-
-### Mastr Video (inside PersonalAI)
-- VM screen recording, GUI automation, video processing
-- Orchestrates remote Azure VMs via RDP/run-command
+- Location: C:\Users\v-amera\trading-intel (git: master, NO REMOTE)
+- STANDING ORDER: must run 24/7. Check at every session start.
+- Demo account, go aggressive
 
 ## Azure Environment
 - Subscription: ME-MngEnvMCAP054758-v-amera-1
@@ -149,8 +161,8 @@ Ahmed should NEVER have to teach the same thing twice. If he rejects a blue head
 - App Service: personalai-agent (rg-ai-app, swedencentral)
 - VMs: vm-spo-assess (rg-spo-assessment, 20.91.186.25, user: azadmin)
 - Storage: stspovid26b (key auth DISABLED → always use --auth-mode login)
-- Budget: up to $2500/month — USE IT if quality demands it
-- Ahmed has Global Admin — can create VMs, assign licenses, do anything
+- Budget: up to $2500/month
+- Ahmed has Global Admin
 
 ### VM Run-Command Quirks
 - az vm run-command invoke has 4096 char stdout limit → split output or use base64
@@ -158,7 +170,8 @@ Ahmed should NEVER have to teach the same thing twice. If he rejects a blue head
 - File transfer by size: <3KB base64, 3-14KB chunked base64, >14KB blob storage
 
 ## Quality Standards
-- PPT slides: no blue-background-with-text headers, proper spacing ("breathing room"), icons/visuals on every slide, corporate-grade, learn from training examples
+- PPT slides: vector-first, no GPU needed. Shape primitives + icons, not raster images.
+- PPT slides: no blue-background-with-text headers, proper spacing ("breathing room"), icons/visuals on every slide
 - Code: working > documented > optimized. But all three if possible.
 - Documentation: for senior CSAs. No hand-holding, no fluff, just facts and steps.
 - Deployments: deploy → test health → test 2 key endpoints → report response times
